@@ -1,17 +1,7 @@
-import { useState } from "react";
-import { buscarClima } from "./services/weatherApi";
+import { useClima } from "./hooks/useClima";
 
 function App() {
-  const [cidade, setCidade] = useState("");
-  const [clima, setClima] = useState(null);
-
-  async function handleBuscarClima() {
-    if (!cidade) return;
-
-    const dados = await buscarClima(cidade);
-
-    setClima(dados);
-  }
+  const { cidade, setCidade, clima, loading, erro, fetchClima } = useClima();
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white flex items-center justify-center px-6">
@@ -28,15 +18,25 @@ function App() {
             placeholder="Digite uma cidade..."
             value={cidade}
             onChange={(e) => setCidade(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && fetchClima()}
             className="w-full bg-zinc-900/80 border border-zinc-700 rounded-2xl px-4 py-3 outline-none focus:border-blue-400 transition"
           />
 
           <button
-            onClick={handleBuscarClima}
-            className="w-full mt-4 bg-blue-500 hover:bg-blue-600 transition rounded-2xl py-3 font-semibold cursor-pointer"
+            onClick={fetchClima}
+            disabled={loading}
+            className={`w-full mt-4 rounded-2xl py-3 font-semibold transition
+              ${loading ? "bg-blue-300 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"}
+            `}
           >
             Buscar clima
           </button>
+
+          {loading && (
+            <p className="text-center mt-6 text-zinc-300">Buscando clima...</p>
+          )}
+
+          {erro && <p className="text-center mt-6 text-red-400">{erro}</p>}
 
           {clima && (
             <div className="mt-8 text-center space-y-2">
