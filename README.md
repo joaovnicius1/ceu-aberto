@@ -1,16 +1,33 @@
-# React + Vite
+🌤️ Céu Aberto
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um app simples e bonito para consultar o clima de qualquer cidade em tempo real.
+Feito com React + Vite + Tailwind, consumindo a API da WeatherAPI.
 
-Currently, two official plugins are available:
+🚀 Sobre o projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+A ideia aqui foi treinar consumo de API, estados no React e organização de código em hooks e componentes.
 
-## React Compiler
+Além disso, também quis deixar a interface mais “viva”, mudando o fundo e os ícones conforme o clima da cidade pesquisada.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🧠 O que o app faz
+Busca o clima de qualquer cidade
+Mostra temperatura, sensação térmica, umidade e vento
+Ícones dinâmicos de acordo com o clima
+Fundo muda conforme o tempo (sol, chuva, nuvem etc.)
+Salva cidades favoritas no localStorage
+Feedback de loading e erro
+🛠️ Tecnologias usadas
+React
+Vite
+Tailwind CSS
+Axios
+WeatherAPI
+localStorage
+📁 Organização do projeto
 
-## Expanding the ESLint configuration
+O projeto foi separado de forma simples:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+hooks/ → lógica do clima (useClima)
+components/ → componentes visuais (card do clima)
+services/ → requisição da API
+utils/ → funções de estilo (ícones, fundo, glow)
